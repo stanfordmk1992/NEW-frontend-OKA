@@ -1,0 +1,20 @@
+
+const UI = window.OOC_UI;
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const fmt = n => Number(n).toLocaleString('en-US');
+const money = n => '₱' + fmt(Math.round(n));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const uuid = () => (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()));
+const note = () => '';
+const iso = d => new Date(d.getTime() - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+const dayPlus = n => iso(new Date(Date.now() + n * 864e5));
+const nightsOf = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+const pretty = s => s ? new Date(s + 'T00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+const clock = () => new Date().toLocaleTimeString('en-GB');
+const rid = p => p + '-' + Math.random().toString(36).slice(2, 8).toUpperCase();
+const hash = s => [...s].reduce((a, c) => (a * 31 + c.charCodeAt(0)) >>> 0, 7);
+const mmss = ts => { const ms = Math.max(0, ts - Date.now()); return `${String(Math.floor(ms / 6e4)).padStart(2, '0')}:${String(Math.floor(ms % 6e4 / 1e3)).padStart(2, '0')}`; };
+const cd = ts => `<b data-countdown="${ts}">${mmss(ts)}</b>`;
+const HOLD_MS = 15 * 60e3;
