@@ -1,1 +1,30 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OKADA Online</title><meta http-equiv="refresh" content="0; url=ooc/"></head><body><a href="ooc/">OKADA Online</a></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#580a3f">
+<title>OKADA Online</title>
+<style>
+  :root { --w: 430px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #2a0119; }
+  body { display: flex; justify-content: center; align-items: center; overflow: auto; }
+  .phone { position: relative; width: min(var(--w), 100vw); height: 100dvh; min-height: calc(min(var(--w), 100vw) + 1px); background: #fff; }
+  .phone iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+  @media (min-width: 600px) and (min-height: 700px) {
+    body { background: radial-gradient(ellipse at top, #6e0c4f, #2a0119 70%); }
+    .phone { height: min(932px, calc(100dvh - 48px)); border-radius: 36px; overflow: hidden; box-shadow: 0 0 0 10px #12000a, 0 0 0 11px rgba(235,201,75,.5), 0 30px 80px rgba(0,0,0,.6); }
+  }
+</style>
+</head>
+<body>
+<div class="phone"><iframe id="app" title="OKADA Online" allow="clipboard-write; autoplay; fullscreen"></iframe></div>
+<script>
+  // 手機版原型：以手機尺寸框載入，任何視窗大小都固定為直向（手機版）；網址 #hash 直接帶入原型頁面
+  var f = document.getElementById('app');
+  f.src = 'ooc/' + (location.hash || '');
+  window.addEventListener('hashchange', function () { if (f.contentWindow) f.contentWindow.location.hash = location.hash; });
+</script>
+</body>
+</html>
